@@ -5,6 +5,7 @@ from enum import Enum
 
 class Restaurant(object):	
 	def __init__(self, name, area, category, price):
+		assert(isinstance(name, str))
 		assert(isinstance(area, Area))
 		assert(isinstance(category, Category))
 		assert(isinstance(price, int) and price > 0)
