@@ -15,6 +15,7 @@ class Restaurant(object):
 		return "{} {} {} {}".format(self.name, self.area.value, self.category.value, self.price)
 
 class Area(Enum):
+	none = "None"
 	wenjin = "文津国际酒店一层东北角"
 	kejiyuan = "清华科技园"
 	chengfulu = "成府路南边"
@@ -24,6 +25,7 @@ class Area(Enum):
 	huaqingjiayuan = "华清嘉园"
 
 class Category(Enum):
+	none = "None"
 	cafe = "cafe"
 	pizza = "pizza"
 	chuancai = "川菜"
@@ -33,6 +35,7 @@ class Category(Enum):
 	xiangcai = "湘菜"
 	shanxicai = "陕西菜"
 	hanguo = "韩国料理"
+	mian = "面"
 
 def randomPick(restaurants, areaFilter, categoryFilter, priceFilter):
 	assert(isinstance(areaFilter, list) and all(map(lambda x: isinstance(x, Area), areaFilter)))
@@ -55,14 +58,17 @@ if __name__ == "__main__":
 		Restaurant("翅迷烤翅", Area.chengfulu, Category.shaokao, 58),
 		Restaurant("阿田大虾", Area.chengfulu, Category.huoguo, 62),
 		Restaurant("红辣子", Area.chengfulu, Category.xiangcai, 71),
-		Restaurant("秦府", Area.gouwuzhongxin, Category.shanxicai, 25),
 		Restaurant("金草帽·春川鸡排锅", Area.shishangyuan, Category.hanguo, 55),
 		Restaurant("水晶烤肉", Area.meishicheng, Category.hanguo, 79),
 		Restaurant("两千斤重庆江湖菜", Area.gouwuzhongxin, Category.chuancai, 84),
-		Restaurant("首尔798年糕火锅", Area.huaqingjiayuan, Category.hanguo, 65),		
+		Restaurant("首尔798年糕火锅", Area.huaqingjiayuan, Category.hanguo, 65),
+		Restaurant("回家吃饭", Area.none, Category.none, 25),
+		Restaurant("Subway", Area.kejiyuan, Category.cafe, 30),
+		Restaurant("秦门", Area.gouwuzhongxin, Category.mian, 25)
 	]
+	fastfoodCategoryFilter = [Category.cafe, Category.zhou, Category.none]
 	areaFilter = []
-	categoryFilter = []
+	categoryFilter = fastfoodCategoryFilter	
 	priceFilter = [0, 999]
 	restaurant = randomPick(restaurants, areaFilter, categoryFilter, priceFilter)
 	print restaurant
